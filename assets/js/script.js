@@ -125,7 +125,7 @@ var passwordLength = charactersList[0];
 
 var chosenCharactersList = charactersList[1];
 
-console.log(chosenCharactersList);
+// console.log(chosenCharactersList);
 
 
 // Function for getting a random element from an array
@@ -139,17 +139,17 @@ function getRandom() {
     }
     randomCharacters.push(randomlist);
   }
-  
+
   return randomCharacters;
 }
 
 var randomList = getRandom();
 
-console.log(randomList);
+// console.log(randomList);
 
 // Function to generate password with user input
 function generatePassword() {
-  var pass = '';
+  var pass = randomList.join("");
 
   getPasswordOptions();
 
