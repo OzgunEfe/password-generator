@@ -115,21 +115,43 @@ function getPasswordOptions() {
   }
 
   var allChosenCharacters = chosenCharacters.flat();
-  
-  return [allChosenCharacters];
+
+  return [passLength, allChosenCharacters];
 }
+
+var charactersList = getPasswordOptions();
+
+var passwordLength = charactersList[0];
+
+var chosenCharactersList = charactersList[1];
+
+console.log(chosenCharactersList);
+
 
 // Function for getting a random element from an array
-function getRandom(arr) {
-  var randomNumber = [];
+function getRandom() {
+  var randomCharacters = []
 
+  for (i=1; i <= passwordLength; i++) {
+    var randomlist = chosenCharactersList[Math.floor(Math.random() * (passwordLength + 1))];
+    while (randomlist === undefined) {
+      randomlist = chosenCharactersList[Math.floor(Math.random() * (passwordLength + 1))];
+    }
+    randomCharacters.push(randomlist);
+  }
+  
+  return randomCharacters;
 }
+
+var randomList = getRandom();
+
+console.log(randomList);
 
 // Function to generate password with user input
 function generatePassword() {
   var pass = '';
 
-  var passDetails = getPasswordOptions();
+  getPasswordOptions();
 
   return pass
 }
@@ -147,12 +169,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
-
-// random karakteri almak icin for loop kullanacagiz. Bir ornek
-
-// var passLength = 35;
-// var passResult = '';
-
-// for (var count = 1; count <= passLength; count++) {
-//   console.log(count);
-// }
