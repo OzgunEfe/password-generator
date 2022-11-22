@@ -94,7 +94,7 @@ function getPasswordOptions() {
   var passwordLength = prompt("Please enter your password length between 10 and 64");
   while (passwordLength < 10 || passwordLength > 64) {
     alert("Please enter a number between 10 and 64.");
-    var passwordLength = prompt("Enter your pass length between 10 and 64");
+    var passwordLength = prompt("Please enter your pass length between 10 and 64");
   }
   var isLowerCase = confirm("Do you want to use lowecase letters in your password?");
   var isUpperCase = confirm("Do you want to use uppercase letters in your password?");
