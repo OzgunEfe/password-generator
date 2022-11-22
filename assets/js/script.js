@@ -108,15 +108,37 @@ function getPasswordOptions() {
   return {passwordLength, isLowerCase, isUpperCase, isPassNumeric, isPassSpacial};
 }
 
+function getChosenCharacters(options){
+  var selectedCharacters = [];
+  if (options.isLowerCase) {
+    selectedCharacters.push(lowerCasedCharacters)
+  }
+  if (options.isUpperCase) {
+    selectedCharacters.push(upperCasedCharacters)
+  }
+  if (options.isPassNumeric) {
+    selectedCharacters.push(numericCharacters)
+  }
+  if (options.isPassSpacial) {
+    selectedCharacters.push(specialCharacters)
+  }
+
+  return selectedCharacters.flat();
+}
+
+
 // Function for getting a random element from an array
-function getRandom(arr) {
+function getRandom(chosenCharactersList, length) {
+  var randomCharacters = [];
 
 }
 
 // Function to generate password with user input
 function generatePassword() {
   var passwordOptions = getPasswordOptions();
+  var chosenCharactersList = getChosenCharacters(passwordOptions);
 
+  return getRandom(chosenCharactersList, passwordOptions.passwordLength).join("");
 }
 
 // Get references to the #generate element
