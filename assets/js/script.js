@@ -128,9 +128,14 @@ function getChosenCharacters(options){
 
 
 // Function for getting a random element from an array
-function getRandom(chosenCharactersList, length) {
+function getRandom(list, passwordCharactersLenght) {
   var randomCharacters = [];
+  for (i=1; i<=passwordCharactersLenght; i++){
+    var index = Math.floor(Math.random() * list.length);
+    randomCharacters.push(list[index]);
+  }
 
+  return randomCharacters;
 }
 
 // Function to generate password with user input
