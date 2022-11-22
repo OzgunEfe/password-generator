@@ -88,72 +88,35 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-chosenCharacters = [];
-
 // Function to prompt user for password options
 function getPasswordOptions() {
-  var passLength = prompt("Enter your pass length between 10 and 64");
-  while (passLength < 10 || passLength > 64) {
-    alert("Please enter a number between 10 and 64.")
-    var passLength = prompt("Enter your pass length between 10 and 64");
+  var passwordLength = prompt("Please enter your password length between 10 and 64");
+  while (passwordLength < 10 || passwordLength > 64) {
+    alert("Please enter a number between 10 and 64.");
+    var passwordLength = prompt("Enter your pass length between 10 and 64");
   }
-  var passLowercase = confirm("Do you want to use lowecase letters in your password?");
-  if (passLowercase) {
-    chosenCharacters.push(lowerCasedCharacters);
-  }
-  var passUppercase = confirm("Do you want to use uppercase letters in your password?");
-  if (passUppercase) {
-    chosenCharacters.push(upperCasedCharacters);
-  }
-  var passNumeric = confirm("Do you want to use numbers in your password?")
-  if (passNumeric) {
-    chosenCharacters.push(numericCharacters);
-  }
-  var passSpacial = confirm("Do you want to use special characters in your password?");
-  if (passSpacial) {
-    chosenCharacters.push(specialCharacters);
+  var isLowerCase = confirm("Do you want to use lowecase letters in your password?");
+  var isUpperCase = confirm("Do you want to use uppercase letters in your password?");
+  var isPassNumeric = confirm("Do you want to use numbers in your password?");
+  var isPassSpacial = confirm("Do you want to use special characters in your password?");
+
+  if (!isLowerCase && !isUpperCase && !isPassNumeric && !isPassSpacial) {
+    alert("You must select at least one options!\nPlease try again.")
+    getPasswordOptions();
   }
 
-  var allChosenCharacters = chosenCharacters.flat();
-
-  return [passLength, allChosenCharacters];
+  return {passwordLength, isLowerCase, isUpperCase, isPassNumeric, isPassSpacial};
 }
-
-var charactersList = getPasswordOptions();
-
-var passwordLength = charactersList[0];
-
-var chosenCharactersList = charactersList[1];
-
-// console.log(chosenCharactersList);
-
 
 // Function for getting a random element from an array
-function getRandom() {
-  var randomCharacters = []
+function getRandom(arr) {
 
-  for (i=1; i <= passwordLength; i++) {
-    var randomlist = chosenCharactersList[Math.floor(Math.random() * (passwordLength + 1))];
-    while (randomlist === undefined) {
-      randomlist = chosenCharactersList[Math.floor(Math.random() * (passwordLength + 1))];
-    }
-    randomCharacters.push(randomlist);
-  }
-
-  return randomCharacters;
 }
-
-var randomList = getRandom();
-
-// console.log(randomList);
 
 // Function to generate password with user input
 function generatePassword() {
-  var pass = randomList.join("");
+  var passwordOptions = getPasswordOptions();
 
-  getPasswordOptions();
-
-  return pass
 }
 
 // Get references to the #generate element
